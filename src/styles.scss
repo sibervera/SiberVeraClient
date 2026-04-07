@@ -1,1 +1,271 @@
-/* You can add global styles to this file, and also import other style files */
+// ─── RESET ───────────────────────────────────────────────────────────────────
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+img, svg { display: block; max-width: 100%; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+// ─── TOKENS ──────────────────────────────────────────────────────────────────
+:root {
+  --clr-dark-1:    #06101f;
+  --clr-dark-2:    #0b1a30;
+  --clr-dark-3:    #0e2240;
+  --clr-primary:   #0284c7;
+  --clr-primary-h: #0369a1;
+  --clr-accent:    #38bdf8;
+  --clr-text-1:    #f1f5f9;
+  --clr-text-2:    #cbd5e1;
+  --clr-text-3:    #94a3b8;
+  --clr-border:    rgba(255,255,255,0.07);
+  --clr-card:      rgba(11,26,48,0.85);
+  --container:     1200px;
+  --header-h:      72px;
+}
+
+// ─── GLOBAL BASE ─────────────────────────────────────────────────────────────
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--clr-dark-1);
+  color: var(--clr-text-1);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+// ─── LAYOUT ──────────────────────────────────────────────────────────────────
+.container {
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+.page-section {
+  padding: 80px 0;
+  background: var(--clr-dark-1);
+  & + .page-section { border-top: 1px solid var(--clr-border); }
+}
+
+// ─── TYPOGRAPHY ──────────────────────────────────────────────────────────────
+.text-gradient {
+  background: linear-gradient(135deg, #38bdf8 0%, #6366f1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-tag {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--clr-accent);
+  margin-bottom: 10px;
+}
+
+.section-head {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 48px;
+
+  h2 {
+    font-size: clamp(26px, 3.5vw, 38px);
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 14px;
+  }
+
+  p {
+    font-size: 16px;
+    color: var(--clr-text-3);
+    line-height: 1.7;
+  }
+}
+
+// ─── BUTTONS ─────────────────────────────────────────────────────────────────
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background .18s, color .18s, border-color .18s, box-shadow .18s, transform .12s;
+}
+
+.btn-lg { padding: 13px 26px; font-size: 15px; }
+
+.btn-primary {
+  background: var(--clr-primary);
+  color: #fff;
+  border-color: var(--clr-primary);
+  &:hover {
+    background: var(--clr-primary-h);
+    border-color: var(--clr-primary-h);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(2,132,199,.35);
+  }
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--clr-text-1);
+  border-color: rgba(255,255,255,.2);
+  &:hover {
+    border-color: var(--clr-accent);
+    color: var(--clr-accent);
+    transform: translateY(-1px);
+  }
+}
+
+// ─── LOGO ─────────────────────────────────────────────────────────────────────
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  &__img {
+    height: 52px;
+    width: auto;
+    object-fit: contain;
+    flex-shrink: 0;
+    display: block;
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  &__title {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    color: var(--clr-text-1);
+    line-height: 1;
+  }
+
+  &__sub {
+    font-size: 11px;
+    color: var(--clr-text-3);
+    line-height: 1;
+  }
+}
+
+// ─── CARD GRID ───────────────────────────────────────────────────────────────
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.svc-card {
+  background: var(--clr-card);
+  border: 1px solid var(--clr-border);
+  border-radius: 12px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: border-color .2s, transform .2s, box-shadow .2s;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--clr-primary), #6366f1);
+    opacity: 0;
+    transition: opacity .2s;
+  }
+
+  &:hover {
+    border-color: rgba(56,189,248,.3);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(0,0,0,.4);
+    &::before { opacity: 1; }
+  }
+
+  &__icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: rgba(2,132,199,.15);
+    color: var(--clr-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  h3 {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--clr-text-1);
+    line-height: 1.3;
+  }
+
+  p {
+    font-size: 14px;
+    color: var(--clr-text-3);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    flex: 1;
+
+    li {
+      font-size: 13px;
+      color: var(--clr-text-2);
+      padding-left: 14px;
+      position: relative;
+
+      &::before {
+        content: '—';
+        position: absolute;
+        left: 0;
+        color: var(--clr-primary);
+        font-size: 11px;
+        top: 1px;
+      }
+    }
+  }
+
+  &__link {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--clr-accent);
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    transition: gap .15s;
+    &:hover { gap: 8px; }
+  }
+}
+
+// ─── RESPONSIVE ──────────────────────────────────────────────────────────────
+@media (max-width: 1024px) {
+  .card-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .card-grid { grid-template-columns: 1fr; }
+  .page-section { padding: 56px 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}

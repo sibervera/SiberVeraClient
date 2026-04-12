@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.bgasecurity.com)",
+      "Bash(npx ng:*)",
+      "Bash(npm list:*)",
+      "Bash(cp \"Denizde olmaman hedef olmadığın anlamına gelmez!.png\" slide-3.png)",
+      "Bash(cp \"Personel Farkındalığını nasıl Sağlıyorsunuz\\(1\\).png\" slide-4.png)",
+      "Bash(cp \"SİBER VERA.png\" slide-5.png)",
+      "Bash(cp \"Sosyal mühendislik yaklaşımımıza hazır mısın.png\" slide-6.png)",
+      "Bash(powershell:*)",
+      "Bash(python:*)"
+    ]
+  }
+}

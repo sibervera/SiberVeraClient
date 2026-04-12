@@ -1,3 +1,79 @@
+// ─── TOPBAR ──────────────────────────────────────────────────────────────────
+.topbar {
+  background: #030b18;
+  border-bottom: 1px solid rgba(255,255,255,.05);
+  height: 36px;
+}
+
+.topbar__inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.topbar__social {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  color: var(--clr-text-3);
+  transition: color .18s, background .18s;
+
+  &:hover {
+    color: #fff;
+    background: rgba(255,255,255,.08);
+  }
+}
+
+.topbar__emergency {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fca5a5;
+  background: rgba(239,68,68,.12);
+  border: 1px solid rgba(239,68,68,.25);
+  border-radius: 999px;
+  padding: 4px 14px;
+  transition: background .18s, border-color .18s, color .18s;
+
+  &:hover {
+    background: rgba(239,68,68,.22);
+    border-color: rgba(239,68,68,.5);
+    color: #fecaca;
+  }
+}
+
+.emergency-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: #ef4444;
+  flex-shrink: 0;
+  animation: emergency-pulse 1.4s infinite;
+}
+
+@keyframes emergency-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: .5; transform: scale(.75); }
+}
+
+@media (max-width: 480px) {
+  .topbar__emergency span:not(.emergency-dot) { display: none; }
+  .topbar__emergency::after { content: 'Acil Hat'; }
+}
+
+// ─── HEADER ──────────────────────────────────────────────────────────────────
 .site-header {
   position: sticky;
   top: 0;
@@ -13,6 +89,25 @@
   display: flex;
   align-items: center;
   gap: 32px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.logo__brand {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  color: var(--clr-text-1);
+  line-height: 1;
+}
+
+.logo__brand-accent {
+  color: var(--clr-accent);
 }
 
 .main-nav {

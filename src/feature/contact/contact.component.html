@@ -7,27 +7,76 @@
     </div>
 
     <div class="contact__inner">
-      <form class="contact-form">
-        <div class="form-row">
-          <label for="name">Ad Soyad</label>
-          <input id="name" type="text" placeholder="Örn. Ali Yılmaz" />
-        </div>
-        <div class="form-row">
-          <label for="business">Firma / Kurum Adı</label>
-          <input id="business" type="text" placeholder="Örn. SiberVera A.Ş." />
-        </div>
-        <div class="form-row">
-          <label for="email">E-posta</label>
-          <input id="email" type="email" placeholder="ornek@firma.com" />
-        </div>
-        <div class="form-row">
-          <label for="message">Altyapı ve İhtiyaç Bilgisi</label>
-          <textarea id="message" rows="4"
-            placeholder="Mevcut altyapınızı ve ihtiyaç duyduğunuz güvenlik hizmetlerini kısaca yazabilirsiniz."></textarea>
-        </div>
-        <button type="button" class="btn btn-primary submit-btn">Gönder</button>
-      </form>
 
+      <!-- ── FORM ── -->
+      <div class="form-wrapper">
+
+        <!-- SUCCESS -->
+        @if (state() === 'success') {
+          <div class="feedback-box feedback-box--success">
+            <span class="feedback-box__icon">✓</span>
+            <div>
+              <strong>Mesajınız iletildi!</strong>
+              <p>En kısa sürede size geri döneceğiz.</p>
+            </div>
+          </div>
+        }
+
+        <!-- ERROR -->
+        @if (state() === 'error') {
+          <div class="feedback-box feedback-box--error">
+            <span class="feedback-box__icon">!</span>
+            <div>
+              <strong>Bir hata oluştu.</strong>
+              <p>Lütfen tekrar deneyin veya doğrudan e-posta gönderin.</p>
+            </div>
+            <button class="btn btn-outline btn-sm" (click)="retry()">Tekrar Dene</button>
+          </div>
+        }
+
+        <!-- FORM -->
+        @if (state() !== 'success') {
+          <form class="contact-form" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+
+            <div class="form-row" [class.has-error]="isInvalid('name')">
+              <label for="name">Ad Soyad</label>
+              <input id="name" type="text" placeholder="Örn. Ali Yılmaz" formControlName="name" />
+              <span class="field-error">Ad Soyad zorunludur.</span>
+            </div>
+
+            <div class="form-row" [class.has-error]="isInvalid('business')">
+              <label for="business">Firma / Kurum Adı</label>
+              <input id="business" type="text" placeholder="Örn. SiberVera A.Ş." formControlName="business" />
+              <span class="field-error">Firma adı zorunludur.</span>
+            </div>
+
+            <div class="form-row" [class.has-error]="isInvalid('email')">
+              <label for="email">E-posta</label>
+              <input id="email" type="email" placeholder="ornek@firma.com" formControlName="email" />
+              <span class="field-error">Geçerli bir e-posta adresi girin.</span>
+            </div>
+
+            <div class="form-row" [class.has-error]="isInvalid('message')">
+              <label for="message">Altyapı ve İhtiyaç Bilgisi</label>
+              <textarea id="message" rows="4"
+                placeholder="Mevcut altyapınızı ve ihtiyaç duyduğunuz güvenlik hizmetlerini kısaca yazabilirsiniz."
+                formControlName="message"></textarea>
+              <span class="field-error">En az 10 karakter girin.</span>
+            </div>
+
+            <button type="submit" class="btn btn-primary submit-btn" [disabled]="state() === 'loading'">
+              @if (state() === 'loading') {
+                <span class="spinner"></span> Gönderiliyor…
+              } @else {
+                Gönder
+              }
+            </button>
+
+          </form>
+        }
+      </div>
+
+      <!-- ── INFO ── -->
       <div class="contact-info">
         <h3>SiberVera İletişim</h3>
         <div class="info-list">
@@ -44,6 +93,10 @@
             <span>kadircetin&#64;sibervera.com.tr</span>
           </div>
           <div class="info-item">
+            <span class="info-icon">📞</span>
+            <a href="tel:+905337677827" class="info-phone">0533 767 78 27</a>
+          </div>
+          <div class="info-item">
             <span class="info-icon">👤</span>
             <span>Kadir Çetin — CEO</span>
           </div>
@@ -54,9 +107,11 @@
           <div>
             <strong>Saldırı Altında mısınız?</strong>
             <p>Acil olay müdahale hattımız 7/24 hizmetinizdedir.</p>
+            <a href="tel:+905337677827" class="emergency-call">Hemen Ara — 0533 767 78 27</a>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </div>

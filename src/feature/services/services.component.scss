@@ -1,1 +1,12 @@
-// Shared styles (.svc-card, .card-grid, .section-head, .page-section) live in styles.scss
+.svc-card--values {
+  background: linear-gradient(135deg, rgba(2,132,199,.12) 0%, rgba(99,102,241,.08) 100%);
+  border-color: rgba(56,189,248,.15);
+
+  &:hover {
+    border-color: rgba(56,189,248,.45);
+  }
+}
+
+.svc-card__icon--values {
+  background: linear-gradient(135deg, rgba(2,132,199,.25), rgba(99,102,241,.25));
+}
